@@ -1,10 +1,10 @@
 class MvtTools < Formula
-  desc "A command line tool for working with Mapbox Vector Tiles (MVT)"
+  desc "A command line tool for working with geo data (GeoJSON, MLT, MVT, GeoPackage, Shapefile)"
   homepage ""
-  url "https://github.com/Outdooractive/mvt-tools/releases/download/v1.8.5/mvt.tar.gz"
-  sha256 "799d398f454ddb35dbac2b2cb388bf7f0d1a23d70b3580e7457db40abe6d8c2e"
+  url "https://github.com/Outdooractive/mvt-tools/releases/download/v2.2.3/mvt.tar.gz"
+  sha256 "39315dc1bea639b18969d256d47a6e6602a5f663905d4af3bf4b9fc20f3ab678"
   license "MIT"
-  version "1.8.5"
+  version "2.2.3"
   
   def install
     bin.install "mvt"
