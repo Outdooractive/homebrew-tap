@@ -1,10 +1,10 @@
 class MvtTools < Formula
-  desc "A command line tool for working with geo data (GeoJSON, MLT, MVT, GeoPackage, Shapefile)"
+  desc "A command line tool for working with geo data (GeoJSON, MLT, MVT, GeoPackage, Shapefile, FIT, CSV)"
   homepage ""
-  url "https://github.com/Outdooractive/mvt-tools/releases/download/v2.4.0/mvt.tar.gz"
-  sha256 "66be9e2846d7b0dfbd00c6b6e06c0ceba973dfb62073e4f5459542d1c3229b87"
+  url "https://github.com/Outdooractive/mvt-tools/releases/download/v2.4.1/mvt.tar.gz"
+  sha256 "6d277173500e13d9e5abea59a7f8e0b0d14c60ad166b9905c9796e53a26307b7"
   license "MIT"
-  version "2.4.0"
+  version "2.4.1"
   
   def install
     bin.install "mvt"
