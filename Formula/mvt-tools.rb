@@ -8,6 +8,6 @@ class MvtTools < Formula
   
   def install
     bin.install "mvt"
-    generate_completions_from_executable bin/"mvt", shells: [:bash, :zsh, :fish]
+    generate_completions_from_executable bin/"mvt", "--generate-completion-script"
   end
 end
