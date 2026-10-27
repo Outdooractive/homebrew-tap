@@ -39,6 +39,9 @@ jobs:
       - name: Tap the checked-out formula repository
         run: brew tap Outdooractive/tap "$PWD"
 
+      - name: Trust the local tap
+        run: brew trust --tap outdooractive/tap
+
       - name: Audit formula
         run: brew audit --strict mvt-tools
 
