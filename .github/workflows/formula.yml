@@ -33,14 +33,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Update Homebrew metadata
+        run: brew update --quiet
+
+      - name: Tap the checked-out formula repository
+        run: brew tap Outdooractive/tap "$PWD"
+
       - name: Audit formula
-        run: brew audit --strict Formula/mvt-tools.rb
+        run: brew audit --strict mvt-tools
 
       - name: Check formula style
-        run: brew style Formula/mvt-tools.rb
+        run: brew style mvt-tools
 
       - name: Install formula
-        run: brew install --formula ./Formula/mvt-tools.rb
+        run: brew install --formula mvt-tools
 
       - name: Test formula
         run: brew test mvt-tools
