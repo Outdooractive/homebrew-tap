@@ -1,0 +1,49 @@
+name: Formula
+
+on:
+  pull_request:
+    paths:
+      - "Formula/mvt-tools.rb"
+  push:
+    branches: [main]
+    paths:
+      - "Formula/mvt-tools.rb"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: formula-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Audit and install mvt-tools
+    if: >-
+      ${{
+        github.event_name != 'pull_request' ||
+        github.event.pull_request.head.repo.full_name == github.repository
+      }}
+    runs-on: macos-latest
+    timeout-minutes: 20
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Audit formula
+        run: brew audit --strict Formula/mvt-tools.rb
+
+      - name: Check formula style
+        run: brew style Formula/mvt-tools.rb
+
+      - name: Install formula
+        run: brew install --formula ./Formula/mvt-tools.rb
+
+      - name: Test formula
+        run: brew test mvt-tools
+
+      - name: Check installed version
+        run: mvt --version
