@@ -1,0 +1,58 @@
+name: Formula
+
+on:
+  pull_request:
+    paths:
+      - "Formula/mvt-tools.rb"
+  push:
+    branches: [main]
+    paths:
+      - "Formula/mvt-tools.rb"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: formula-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Audit and install mvt-tools
+    if: >-
+      ${{
+        github.event_name != 'pull_request' ||
+        github.event.pull_request.head.repo.full_name == github.repository
+      }}
+    runs-on: macos-latest
+    timeout-minutes: 20
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update Homebrew metadata
+        run: brew update --quiet
+
+      - name: Tap the checked-out formula repository
+        run: brew tap Outdooractive/tap "$PWD"
+
+      - name: Trust the local tap
+        run: brew trust --tap outdooractive/tap
+
+      - name: Audit formula
+        run: brew audit --strict mvt-tools
+
+      - name: Check formula style
+        run: brew style mvt-tools
+
+      - name: Install formula
+        run: brew install --formula mvt-tools
+
+      - name: Test formula
+        run: brew test mvt-tools
+
+      - name: Check installed version
+        run: mvt --version
