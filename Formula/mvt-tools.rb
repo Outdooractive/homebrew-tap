@@ -1,8 +1,8 @@
 class MvtTools < Formula
   desc "Command-line tool for MVT/MLT vector tiles and common GIS formats"
   homepage "https://github.com/Outdooractive/mvt-tools"
-  url "https://github.com/Outdooractive/mvt-tools/releases/download/v3.0.1/mvt.tar.gz"
-  sha256 "be4edd9d08fbf8b160a1b8f035934aa98b73bf61c46a6866ff574750007a7d54"
+  url "https://github.com/Outdooractive/mvt-tools/releases/download/v3.1.1/mvt.tar.gz"
+  sha256 "cc9ed68b70cc4c739b7517eb28bcfa5add179d84d72a96064b7b3bf1e5b3668c"
   license "MIT"
 
   def install
